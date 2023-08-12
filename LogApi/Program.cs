@@ -1,3 +1,5 @@
+using LogApi.Mappings;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -6,6 +8,10 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+// add ElasticsearchService
+builder.Services.AddSingleton<IElasticsearchService, ElasticsearchService>();
+// add AutoMapper
+builder.Services.AddAutoMapper(typeof(LogApiMappingProfile));
 
 var app = builder.Build();
 
